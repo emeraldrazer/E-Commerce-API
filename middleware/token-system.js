@@ -21,4 +21,21 @@ const checkToken = (req, res, next) => {
     });
 };
 
-module.exports = { checkToken, generateToken };
+const checkCookieToken = (req, res, next) => {
+    const token = req.headers.cookie.split('=')[1];
+
+    if (!token) {
+        return res.status(401).json({ err: true, msg: "No token provided" });
+    }
+
+    jwt.verify(token, key, (err, decoded) => {
+        if (err) {
+            return res.status(401).json({ err: true, msg: 'Invalid token' });
+        }
+
+        req.user = decoded;
+        next();
+    });
+}
+
+module.exports = { checkToken, generateToken, checkCookieToken };
