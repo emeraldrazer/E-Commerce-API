@@ -22,10 +22,10 @@ const checkToken = (req, res, next) => {
 };
 
 const checkCookieToken = (req, res, next) => {
-    const token = req.headers.cookie.split('=')[1];
+    const token = req.headers.cookie?.split('=')[1];
 
     if (!token) {
-        return res.status(401).json({ err: true, msg: "No token provided" });
+        return res.status(401).json({ err: true, msg: "Invalid session" });
     }
 
     jwt.verify(token, key, (err, decoded) => {
