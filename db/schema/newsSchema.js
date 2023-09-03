@@ -3,35 +3,35 @@ const mongoose = require('mongoose');
 const TaskSchema = new mongoose.Schema({
     id: {
         type: String,
-        required: true
+        required: false
     },
     published: {
         type: String,
-        required: true
+        required: [true, 'Date when published not provided']
     },
     author: {
         type: String,
-        required: true
+        required: [true, 'Author not provided']
     },
     avatar: {
         type: String,
-        required: true
+        required: [true, 'Avatar not provided']
     },
     title: {
         type: String,
-        required: true
+        required: [true, 'Title not provided']
     },
     background: {
         type: String,
-        required: true
+        required: [true, 'Background not provided']
     },
     subtitle: {
         type: String,
-        required: true
+        required: [true, 'Subtitle not provided']
     },
     category: {
         type: String,
-        required: true
+        required: [true, 'Category not provided']
     }
 })
 
