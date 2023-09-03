@@ -40,6 +40,7 @@ const login = async function (req, res) {
         const isMatch = await compare(data.password, findUser.hashedPassword);
 
         if(isMatch){
+            res.cookie('authToken', findUser._id, {maxAge: 3600, httpOnly: true});
             return res.status(200).json({err: false, msg: 'Successfully logged in', info: findUser})
         }
         

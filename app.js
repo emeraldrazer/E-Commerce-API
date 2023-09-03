@@ -19,7 +19,7 @@ app.use('/api/v1/', path);
 
 app.use(notFound);
 
-const connectDB = require('./db/connect')
+const connectDB = require('./db/connect');
 
 const start = async() => {
     try {
